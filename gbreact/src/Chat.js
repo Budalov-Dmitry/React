@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { Button, Input } from '@mui/material';
+import { Box } from '@mui/system';
 
 const Chat = props => {
 
@@ -31,27 +33,27 @@ const Chat = props => {
     
     
     return (
-        <div>
+        <Box>
             Ваше имя : 
             <input autoFocus={true}  ref={refName}></input>
             Ваше сообщение : 
             <input autoFocus={true}   ref={refMessage}></input>
-            <button onClick={() => setMessageList(prevState =>[... prevState,{
+            <Button onClick={() => setMessageList(prevState =>[... prevState,{
                 id:getId(prevState),
                 text:refMessage.current.value,
                 author:refName.current.value,
                 date:dateNow
-            }])}>Отправить</button>
+            }])}>Отправить</Button>
             {messageList.map((message => {
                 return (
-                    <div key={message.id}>
+                    <Box key={message.id}>
                         {message.author}
                         {message.date}
                         {message.text}
-                    </div>
+                    </Box>
                 )
             }))}
-        </div>
+        </Box>
     ); 
 };
 

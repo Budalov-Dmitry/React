@@ -16,7 +16,7 @@ function App() {
         },
       },
     typography: {
-        fontSize: 48,
+        fontSize: 25,
       },
   });
   
