@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { Button, Input } from '@mui/material';
+import { Box } from '@mui/system';
 
 const Chat = props => {
 
@@ -6,17 +8,24 @@ const Chat = props => {
     const refMessage = useRef(null);
     const refName = useRef(null);
     var date = new Date(Date.now());
+    var dateNow = date.toLocaleDateString('ru-RU', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })
+     console.log(messageList);
+
+    function getId (array) {
+        return array.length + 1
+    }
     useEffect(() => {
         setTimeout(() =>{
             const lastAuthor = messageList[messageList.length - 1];
             if(lastAuthor && lastAuthor.author) {
                 setMessageList(prevState => [... prevState ,{
+                    id:getId(prevState),
                     text:'Ждите ' + lastAuthor.author +' и может вам ответят',
-                    date:date.toLocaleDateString('ru-RU', {
-                            year: 'numeric',
-                            month: '2-digit',
-                            day: '2-digit',
-                          })
+                    date:dateNow
                 }])
             }
         },1500)
@@ -24,30 +33,27 @@ const Chat = props => {
     
     
     return (
-        <div>
-            Ваше имя
-            <input ref={refName}></input>
-            Ваше сообщение
-            <input ref={refMessage}></input>
-            <button onClick={() => setMessageList(prevState => [... prevState ,{
+        <Box>
+            Ваше имя : 
+            <input autoFocus={true}  ref={refName}></input>
+            Ваше сообщение : 
+            <input autoFocus={true}   ref={refMessage}></input>
+            <Button onClick={() => setMessageList(prevState =>[... prevState,{
+                id:getId(prevState),
                 text:refMessage.current.value,
                 author:refName.current.value,
-                date:date.toLocaleDateString('ru-RU', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                      })
-            }])}>Отправить</button>
+                date:dateNow
+            }])}>Отправить</Button>
             {messageList.map((message => {
                 return (
-                    <div>
+                    <Box key={message.id}>
                         {message.author}
                         {message.date}
                         {message.text}
-                    </div>
+                    </Box>
                 )
             }))}
-        </div>
+        </Box>
     ); 
 };
 
