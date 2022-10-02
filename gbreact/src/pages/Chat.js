@@ -13,7 +13,6 @@ const Chat = props => {
         month: '2-digit',
         day: '2-digit',
       })
-     console.log(messageList);
 
     function getId (array) {
         return array.length + 1
