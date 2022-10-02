@@ -1,14 +1,16 @@
 import './App.css';
-import Message from './Message';
-import Chat from './Chat';
 import React from 'react';
-import ChatList from './ChatList';
+import Latout from './component/Latout';
+import Chat from './pages/Chat';
+import ChatList from './pages/ChatList';
+import Home from './pages/Home';
+import Profile from './pages/Profile'; 
+import PageNotFound from './pages/Profile'; 
+import { Route, Routes, Link } from 'react-router-dom';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 
 function App() {
-
-  const textMessage = 'Мне лень придумывать текст)';
   const theme = createTheme({
     palette: {
         primary: {
@@ -20,14 +22,20 @@ function App() {
       },
   });
   
-
+  
   return (
 
-    <ThemeProvider theme={theme}><div className="App">
-    <Message message = {textMessage} />
-    <Chat  />
-    <ChatList  />
-  </div></ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path= '/' element = {<Latout  />}>
+          <Route index element={<Home  />} ></Route>
+          <Route path={'/ChatList'} element={<ChatList  />} ></Route>
+          <Route path={'/Profile'} element={<Profile  />} ></Route>
+          <Route path={'/Chat'} element={<Chat  />} ></Route>
+          <Route path={'*'} element={<PageNotFound  />} />
+        </Route>
+      </Routes>
+    </ThemeProvider>
     
   );
 }
