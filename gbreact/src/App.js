@@ -6,7 +6,7 @@ import ChatList from './pages/ChatList';
 import Home from './pages/Home';
 import Profile from './pages/Profile'; 
 import PageNotFound from './pages/Profile'; 
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 
@@ -29,9 +29,9 @@ function App() {
       <Routes>
         <Route path= '/' element = {<Latout  />}>
           <Route index element={<Home  />} ></Route>
-          <Route path={'/ChatList'} element={<ChatList  />} ></Route>
-          <Route path={'/Profile'} element={<Profile  />} ></Route>
-          <Route path={'/Chat'} element={<Chat  />} ></Route>
+          <Route path={'/chatList'} element={<ChatList  />} ></Route>
+          <Route path={'/profile'} element={<Profile  />} ></Route>
+          <Route path={'/chat/:id'} element={<Chat  />} ></Route>
           <Route path={'*'} element={<PageNotFound  />} />
         </Route>
       </Routes>
