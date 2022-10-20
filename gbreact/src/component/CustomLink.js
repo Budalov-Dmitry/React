@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useMatch } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
-const CustomLink = ({to,children}) => {
+export const CustomLink = ({to,children}) => {
 
     const match = useMatch(to)
     return (
@@ -11,4 +12,7 @@ const CustomLink = ({to,children}) => {
     );
 };
 
-export default CustomLink;
+CustomLink.propTypes = {
+    to:PropTypes.string,
+    children:PropTypes.string
+}
