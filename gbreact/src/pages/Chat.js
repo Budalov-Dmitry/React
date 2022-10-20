@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, Input } from '@mui/material';
+import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useParams } from 'react-router-dom';
 
-const Chat = props => {
+const Chat = () => {
 
     var date = new Date(Date.now());
     var dateNow = date.toLocaleDateString('ru-RU', {
